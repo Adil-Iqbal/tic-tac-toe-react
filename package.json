@@ -1,0 +1,31 @@
+{
+  "name": "tic-tac-toe-react",
+  "version": "1.0.0",
+  "description": "Tic-Tac-Toe Made in ReactJS using NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adil-Iqbal/tic-tac-toe-react.git"
+  },
+  "keywords": [
+    "tic",
+    "tac",
+    "toe",
+    "react",
+    "node",
+    "web",
+    "developer",
+    "javascript",
+    "jsx",
+    "eslint"
+  ],
+  "author": "Adil Iqbal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Adil-Iqbal/tic-tac-toe-react/issues"
+  },
+  "homepage": "https://github.com/Adil-Iqbal/tic-tac-toe-react#readme"
+}
