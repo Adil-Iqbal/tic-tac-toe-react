@@ -29,7 +29,10 @@
     "url": "https://github.com/Adil-Iqbal/tic-tac-toe-react/issues"
   },
   "homepage": "https://github.com/Adil-Iqbal/tic-tac-toe-react#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "babel-eslint": "^10.0.1",
@@ -41,8 +44,6 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "scss-loader": "0.0.1",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",
