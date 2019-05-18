@@ -2,7 +2,7 @@
   "name": "tic-tac-toe-react",
   "version": "1.0.0",
   "description": "Tic-Tac-Toe Made in ReactJS using NodeJS.",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
