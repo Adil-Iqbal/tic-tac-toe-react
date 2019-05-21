@@ -9,9 +9,7 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <h1>Hello World</h1>
-      </Fragment>
+      <h1>Hello World</h1>
     );
   }
 }
