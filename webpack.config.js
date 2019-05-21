@@ -11,7 +11,7 @@ Tic-Tac-Toe in React!
 Copyright (c) 2019 Adil Iqbal.
 
 This project was compiled by Webpack. 
-For full and uncompressed source code, please visit:
+For uncompressed source code, please visit:
 https://github.com/Adil-Iqbal/Portfolio/tree/master/src
 
 `;
@@ -42,7 +42,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
           'babel-loader',
@@ -72,9 +72,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new webpack.BannerPlugin({
       banner: BANNER,
