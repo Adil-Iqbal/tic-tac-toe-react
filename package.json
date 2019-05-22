@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/Adil-Iqbal/tic-tac-toe-react#readme",
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
