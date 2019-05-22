@@ -8,56 +8,46 @@
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 
 ## General info
-This app is a one-player game of Tic-Tac-Toe, played against the computer.  The computer uses the Min-Max Algorithm to determine it's next move.  In keeping with how this game is typically played in real-world senarios, the initial move is assigned randomly to either the player or the computer.  The 'X' and 'O' delimiters are also randomly assigned.  The app tracks the score, though it can be safely ignored - as it is in most real-world senarios.
-
-This project was written for the following reasons:
-* Demonstrate my ability to...
+This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax) to determine its move.  In keeping with how this game is typically played in real world, the initial move is assigned randomly to either the player or the computer.  The 'X' and 'O' delimiters are also assigned randomly.  This project was written for the following reasons:
+* **Demonstrate my ability to...**
   * ...use the React framework.
   * ...integrate type-checking in React applications.
-  * ...integrate Node, eslint, and Webpack into my React projects.
-  * ...implement recursive algorithms.
+  * ...integrate Node, ESLint, and Webpack into my React projects.
+  * ...implement a recursive algorithm.
 
-* Give myself the opportunity to...
+* **Give myself the opportunity to...**
   * ...construct a build scaffold to stream-line production of future React projects.
   * ...learn and implement best-practices in my code.
-  * ...keep myself up-to-date on skills that have already been acquired (Node, Webpack, eslint, SCSS, etc). 
+  * ...keep myself up-to-date on skills that have already been acquired (Node, Webpack, ESLint, Sass, etc). 
+  * ...provide a foundation for learning other React technologies (React Router, Redux, and React-Native).
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
 
-## Technologies
-The core technologies are listed below.  For more detailed information, please see the package.json in the root directory of this repository. 
-* React - version 16.8.6
-* Webpack - version 4.32.0
-* Node - version 10.15.3
-* ESLint - version 5.16.0
+## Technologies 
+* **React** - version 16.8.6
+* **Webpack** - version 4.32.0
+* **Node** - version 10.15.3
+* **ESLint** - version 5.16.0
+* **Sass** - version 3.6.0
+* **Babel** - version 7.4.6
+
+See the 'package.json' file in the root directory for complete and detailed information on all technologies used as well as versioning.
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
-
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+Describe how to install / setup your local environment / add link to demo version.
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
+ 
 To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+- [ ] **Chance to Blunder** - The computer has the ability to play this game perfectly (meaning either it will win or it will draw).  Every time a game is initiated, the computer is given a random chance to blunder a move, which gives the player the opportunity to capitalize on its mistake.
+- [ ] **Score Tracking** - This app will track your score. As with real world Tic-Tac-Toe, the score counter has no impact on gameplay and can safely be ignored.
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
-
-## Inspiration
-Add here credits. Project inspired by..., based on...
+This project is currently in active development, and once it is fully functional - it will be published on my portfolio page, which can be found at [here](www.adil-iqbal.com).
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [Adil Iqbal](https://www.adil-iqbal.com/) - feel free to contact me!
