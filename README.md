@@ -11,7 +11,7 @@
 * [Contact](#contact)
 
 ## General info
-This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax) to determine its move.  In keeping with how this game is typically played in real world, the initial move is assigned randomly to either the player or the computer.  The 'X' and 'O' delimiters are also assigned randomly.  This project was written for the following reasons:
+This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a **[Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax)** to determine its move.  In keeping with how this game is typically played in real world, the initial move is assigned randomly to either the player or the computer.  The 'X' and 'O' delimiters are also assigned randomly.  This project was written for the following reasons:
 * **Demonstrate my ability to ...**
   * ... use the React framework.
   * ... integrate type-checking in React applications.
@@ -43,8 +43,7 @@ To-do list:
 - [ ] **Score Tracking** - This app will track your score. As with real world Tic-Tac-Toe, the score counter has no impact on gameplay and can safely be ignored.
 
 ## Status
-This project is currently **in active development** and *not ready* for publishing.
-Once published, a live version will be viewable on **[my portfolio page](https://www.adil-iqbal.com/)**.
+This project is currently **in active development** and *not ready* for publishing. This section will be updated often during the development process. Once published, a live version will be viewable on **[my portfolio page](https://www.adil-iqbal.com/)**.
 
 ## Setup
 Describe how to install / setup your local environment / add link to demo version.
