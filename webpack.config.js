@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,9 +13,8 @@ Tic-Tac-Toe in React!
 @license MIT.
 Copyright (c) 2019 Adil Iqbal.
 
-This project was compiled by Webpack. 
 For uncompressed source code, please visit:
-https://github.com/Adil-Iqbal/Portfolio/tree/master/src
+https://github.com/Adil-Iqbal/tic-tac-toe-react
 
 `;
 
