@@ -2,8 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackBannerPlugin = require('html-webpack-banner-plugin');
 
-const VENDOR_LIBS = ['react', 'react-dom'];
+const VENDOR_LIBS = ['react', 'react-dom', 'prop-types'];
 const BANNER = `
 
 Tic-Tac-Toe in React!
@@ -18,13 +20,13 @@ https://github.com/Adil-Iqbal/Portfolio/tree/master/src
 
 module.exports = {
   entry: {
-    bundle: './src/index.jsx',
+    bundle: './src/scripts/index.jsx',
     vendor: VENDOR_LIBS,
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[chunkhash].bundle.js',
-    chunkFilename: '[name].[chunkhash].bundle.js',
+    filename: 'scripts/[name].[chunkhash].bundle.js',
+    chunkFilename: 'scripts/[name].[chunkhash].bundle.js',
   },
   optimization: {
     runtimeChunk: 'single',
@@ -75,11 +77,18 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: 'styles/[name].css',
+      chunkFilename: 'styles/[name].css',
     }),
     new webpack.BannerPlugin({
       banner: BANNER,
     }),
+    new HtmlWebpackBannerPlugin({
+      banner: BANNER,
+    }),
+    new CopyWebpackPlugin([{
+      from: 'src/static',
+      to: 'static',
+    }]),
   ],
 };
