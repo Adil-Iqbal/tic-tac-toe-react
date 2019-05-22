@@ -12,17 +12,17 @@
 
 ## General info
 This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax) to determine its move.  In keeping with how this game is typically played in real world, the initial move is assigned randomly to either the player or the computer.  The 'X' and 'O' delimiters are also assigned randomly.  This project was written for the following reasons:
-* **Demonstrate my ability to...**
-  * ...use the React framework.
-  * ...integrate type-checking in React applications.
-  * ...integrate Node, ESLint, and Webpack into my React projects.
-  * ...implement a recursive algorithm.
+* **Demonstrate my ability to ...**
+  * ... use the React framework.
+  * ... integrate type-checking in React applications.
+  * ... integrate Node, ESLint, and Webpack into my React projects.
+  * ... implement a recursive algorithm.
 
-* **Give myself the opportunity to...**
-  * ...construct a build scaffold to stream-line production of future React projects.
-  * ...learn and implement best-practices in my code.
-  * ...keep myself up-to-date on skills that have already been acquired (Node, Webpack, ESLint, Sass, etc). 
-  * ...provide a foundation for learning other React technologies (React Router, Redux, and React-Native).
+* **Give myself the opportunity to ...**
+  * ... construct a build scaffold to stream-line production of future React projects.
+  * ... learn and implement best-practices in my code.
+  * ... keep myself up-to-date on skills that have already been acquired (Node, Webpack, ESLint, Sass, etc). 
+  * ... provide a foundation for learning other React technologies (React Router, Redux, and React-Native).
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
