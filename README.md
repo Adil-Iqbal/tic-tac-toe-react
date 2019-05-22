@@ -25,7 +25,7 @@ This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a [Min
   * ... provide a foundation for learning other React technologies (React Router, Redux, and React-Native).
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](https://via.placeholder.com/500.jpg?text=Place+screenshot+here.)
 
 ## Technologies 
 * **React** - version 16.8.6
@@ -43,7 +43,7 @@ To-do list:
 - [ ] **Score Tracking** - This app will track your score. As with real world Tic-Tac-Toe, the score counter has no impact on gameplay and can safely be ignored.
 
 ## Status
-This project is currently in active development and not ready for publishing.
+This project is currently **in active development** and *not ready* for publishing.
 Once published, a live version will be viewable on **[my portfolio page](https://www.adil-iqbal.com/)**.
 
 ## Setup
