@@ -50,4 +50,8 @@ Once published, a live version will be viewable on **[my portfolio page](https:/
 Describe how to install / setup your local environment / add link to demo version.
 
 ## Contact
-Created by [Adil Iqbal](https://www.adil-iqbal.com/) - feel free to contact me!
+Created by [Adil Iqbal](https://www.adil-iqbal.com/).
+
+E-mail: main@adil-iqbal.com
+
+I'd love to hear from you. Feel free to contact me at any time.
