@@ -5,9 +5,9 @@
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
-* [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
+* [Setup](#setup)
 * [Contact](#contact)
 
 ## General info
@@ -37,17 +37,17 @@ This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a [Min
 
 See the 'package.json' file in the root directory for complete and detailed information on all technologies used as well as versioning.
 
-## Setup
-Describe how to install / setup your local environment / add link to demo version.
-
 ## Features
- 
 To-do list:
 - [ ] **Chance to Blunder** - The computer has the ability to play this game perfectly (meaning either it will win or it will draw).  Every time a game is initiated, the computer is given a random chance to blunder a move, which gives the player the opportunity to capitalize on its mistake.
 - [ ] **Score Tracking** - This app will track your score. As with real world Tic-Tac-Toe, the score counter has no impact on gameplay and can safely be ignored.
 
 ## Status
-This project is currently in active development, and once it is fully functional - it will be published on my portfolio page, which can be found at [here](www.adil-iqbal.com).
+This project is currently in active development and not ready for publishing.
+Once published, a live version will be viewable on **[my portfolio page](https://www.adil-iqbal.com/)**.
+
+## Setup
+Describe how to install / setup your local environment / add link to demo version.
 
 ## Contact
 Created by [Adil Iqbal](https://www.adil-iqbal.com/) - feel free to contact me!
