@@ -27,17 +27,16 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].bundle.js',
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
-          chunks: 'initial',
+          chunks: 'all',
           name: 'vendor',
-          test: 'vendor',
-          enforce: true,
+          test: /[\\/]node_modules[\\/]/,
         },
       },
     },
-    runtimeChunk: true,
   },
   module: {
     rules: [
@@ -68,6 +67,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      chunksSortMode(chunk1, chunk2) {
+        const order = ['vendor', 'runtime', 'bundle'];
+        const order1 = order.indexOf(chunk1.names[0]);
+        const order2 = order.indexOf(chunk2.names[0]);
+        return order1 - order2;
+      },
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
