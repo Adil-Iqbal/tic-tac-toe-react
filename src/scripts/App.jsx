@@ -35,12 +35,13 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    const { playersTurn } = this.state;
-    this.checkWin();
-    this.checkDraw();
-    if (!playersTurn) {
-      this.computersMove();
-    }
+    console.log('-- update --');
+    // const { playersTurn } = this.state;
+    // this.checkWin();
+    // this.checkDraw();
+    // if (!playersTurn) {
+    //   this.computersMove();
+    // }
   }
 
   initializeGame() {
@@ -56,6 +57,13 @@ class App extends React.Component {
   checkWin() {
     const { winConditions } = this.state;
     console.log(winConditions);
+  }
+
+  checkDraw() {
+    const { board } = this.state;
+    if (!board.includes(EMPTY)) {
+      console.log("It's a draw!");
+    }
   }
 
   handleTileClick(boardIndex) {

@@ -5,7 +5,7 @@ function UIComponent(props) {
   const {
     wins, losses, draws, blunderChance,
   } = props;
-  let intelligence = (1 - blunderChance).toFixed(2);
+  let intelligence = ((1 - blunderChance) * 100).toFixed(2);
   intelligence += '%';
   return (
     <div className="app-ui container">
