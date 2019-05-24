@@ -88,9 +88,9 @@ DISCLAIMER: The completed source code will likely differ from the plan I have se
       * If playersTurn is false, the Computer moves.
     * Define click event handlers
       * handleTileClick: Function that handles a Tile Component being clicked.
-        * If playersTurn, changes...
-          * Board to reflect which tile was claimed.
-          * Begins next move.
+        * If tile's boardStringChar is ' ' and it's playersTurn, 
+          * Change board to reflect which tile was claimed.
+          * Begin next move.
       * handleResetClick: Function that handles a 'Forfeit and Reset' button being clicked.
         * Increments score.losses.
         * Initialize next game.
@@ -99,11 +99,26 @@ DISCLAIMER: The completed source code will likely differ from the plan I have se
         * Initialize next game.
     * computersMove: Method that determines the computer's move.
       * Checks whether the computer blunders.
-      * If it blunders, the computer claims a random Tile.
+      * If it blunders, the computer claims a random empty Tile.
       * If it doesn't blunder, the computer claims the optimal Tile (based on Minimax Algorithm).
     * checkWin: Method that checks whether player/computer has met a win condition.
+    * checkDraw: Method that checks whether a draw has occurred.
+    * gameOver: Method called when game is to conclude.
+      * Highlight Tiles involved in win condition.
+        * Player wins. 
+          * Green
+          * Increment score.wins.
+        * Computer wins.
+          * Red
+          * Increment score.losses.
+        * Draw
+          * All tiles blue.
+          * Increment score.draws.
+      * Wait for 800ms.
+      * Re-initialize game board.
     * nextTurn: Method that is called whenever a turn has concluded.
         * Checks win conditions.
+        * Checks draw conditions.
         * Toggles playerTurn
         * If not playersTurn, invokes computer's move.
     * boardToString: Method that converts board to string of length 9, containing only 'X', 'O', and ' '.
