@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
+$height: 360px;
+$spaceBetweenMargins : 10px;
+
+body {
+    background: black;
+}
+
+.app-main {
+    max-width: $height;
+    height: $height;
+}
+
+.app-board {
+    height: $height;
+    padding-top: $spaceBetweenMargins / 2;
+    padding-bottom: $spaceBetweenMargins / 2;
+}
+
+.app-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: ($height / 3) - (2 * $spaceBetweenMargins) ;
+    margin: $spaceBetweenMargins / 2;
+    border-radius: 5px;
+    font-size: 80px;
+    font-family: 'Nanum Brush Script', cursive;
+
+}
