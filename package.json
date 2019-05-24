@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe-react",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Tic-Tac-Toe Made in ReactJS using NodeJS.",
   "main": "./src/index.js",
   "scripts": {
