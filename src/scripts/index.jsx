@@ -16,12 +16,11 @@ function TileComponent(props) {
   const {
     focus, boardIndex, boardStringChar, handleClick,
   } = props;
-  console.log(boardIndex);
   return (
     <div
       role="button"
       className="app-tile col-sm auto-mx text-center"
-      onClick={() => handleClick(props)}
+      onClick={() => handleClick(boardIndex)}
       tabIndex={focus}
     >
       {boardStringChar}
@@ -117,10 +116,9 @@ class App extends React.Component {
     this.setState(newState);
   }
 
-  handleTileClick(props) {
+  handleTileClick(boardIndex) {
     let { playersTurn } = this.state;
     const { board } = this.state;
-    const { boardIndex } = props;
     if (playersTurn && board[boardIndex] === EMPTY) {
       board[boardIndex] = PLAYER;
       playersTurn = false;
