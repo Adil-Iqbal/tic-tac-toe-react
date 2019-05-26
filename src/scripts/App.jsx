@@ -66,15 +66,13 @@ class App extends React.Component {
     }
   }
 
-  handleTileClick(boardIndex) {
-    let { playersTurn } = this.state;
-    const { board } = this.state;
-    if (playersTurn && board[boardIndex] === EMPTY) {
-      board[boardIndex] = PLAYER;
-      playersTurn = false;
+  handleTileClick(env) {
+    const index = env.currentTarget.dataset.board_index;
+    const { board, playersTurn } = this.state;
+    if (playersTurn && board[index] === EMPTY) {
+      board[index] = PLAYER;
       this.setState({
         board,
-        playersTurn,
       });
     }
   }
@@ -100,11 +98,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { score, blunderChance } = this.state;
+    const { score, blunderChance, playersTurn } = this.state;
     const { wins, losses, draws } = score;
     return (
       <div className="app-main container mx-auto">
         <BoardComponent
+          playersTurn={playersTurn}
           boardString={this.boardToString()}
           handleClick={this.handleTileClick}
         />

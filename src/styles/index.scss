@@ -24,10 +24,15 @@ body {
     justify-content: center;
     align-items: center;
     background: white;
+    width: auto;
     height: ($height / 3) - (2 * $spaceBetweenMargins) ;
     margin: $spaceBetweenMargins / 2;
     border-radius: 5px;
     font-size: 80px;
     font-family: 'Nanum Brush Script', cursive;
-
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
