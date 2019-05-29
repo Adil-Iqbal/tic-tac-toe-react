@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TileComponent from './TileComponent';
 
 function BoardComponent(props) {
-  const { boardString, handleClick } = props;
+  const { boardString, handleClick, signals } = props;
   let index = 0;
   const rows = [];
   for (let i = 0; i < 3; i += 1) {
@@ -15,6 +15,7 @@ function BoardComponent(props) {
           key={index}
           boardIndex={index}
           boardStringChar={char}
+          signal={signals[index]}
           handleClick={handleClick}
         />,
       );
@@ -30,6 +31,7 @@ function BoardComponent(props) {
 }
 
 BoardComponent.propTypes = {
+  signals: PropTypes.arrayOf(PropTypes.number).isRequired,
   boardString: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
