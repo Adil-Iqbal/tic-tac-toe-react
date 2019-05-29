@@ -23,7 +23,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
     width: auto;
     height: ($height / 3) - (2 * $spaceBetweenMargins) ;
     margin: $spaceBetweenMargins / 2;
@@ -35,4 +34,20 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.empty {
+    background: white;
+}
+
+.player-wins {
+    background: lightgreen;
+}
+
+.player-losses {
+    background: palevioletred;
+}
+
+.draw {
+    background: slateblue;
 }
