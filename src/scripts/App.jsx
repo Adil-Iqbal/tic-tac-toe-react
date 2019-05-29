@@ -19,7 +19,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      board: [1, 0, 1, -1, 0, -1, 1, 0, 1],
+      board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       highlight: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6],
         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]],
@@ -42,11 +42,22 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    const { checkBoard } = this.state;
+    const { checkBoard, board } = this.state;
     if (checkBoard) {
-      this.checkWin();
+      this.checkWin(board);
       this.checkDraw();
     }
+  }
+
+  getEmptyTiles() {
+    const { board } = this.state;
+    const emptyTiles = [];
+    for (let i = 0; i < board.length; i += 1) {
+      if (board[i] === EMPTY) {
+        emptyTiles.push(i);
+      }
+    }
+    return emptyTiles;
   }
 
   newGame() {
@@ -60,8 +71,8 @@ class App extends React.Component {
     });
   }
 
-  checkWin() {
-    const { board, winConditions } = this.state;
+  checkWin(board, isNode = false, returnPlayer = false) {
+    const { winConditions } = this.state;
     for (let i = 0; i < winConditions.length; i += 1) {
       let a = winConditions[i][0];
       let b = winConditions[i][1];
@@ -70,10 +81,22 @@ class App extends React.Component {
       b = board[b];
       c = board[c];
       if ((a === b === c) && (a !== EMPTY)) {
-        this.resolveGame(i, a);
+        if (!isNode) {
+          this.resolveGame(i, a);
+          break;
+        }
+        if (returnPlayer) {
+          return a;
+        }
+        return true;
       }
     }
+    if (isNode) {
+      return false;
+    }
+    return null;
   }
+
 
   async resolveGame(index, winner) {
     let { score } = this.state;
@@ -105,12 +128,12 @@ class App extends React.Component {
   checkDraw() {
     const { board } = this.state;
     if (!board.includes(EMPTY)) {
-      this.draw();
+      this.drawGame();
     }
     // else, Computer's turn begins here.
   }
 
-  async draw() {
+  async drawGame() {
     let { score } = this.state;
     score = Object.assign({}, score);
     score.draws += 1;
