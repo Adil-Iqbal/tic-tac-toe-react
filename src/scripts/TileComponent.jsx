@@ -10,15 +10,15 @@ function TileComponent(props) {
   function getClasses(s) {
     const baseClasses = 'app-tile col-sm auto-mx text-center';
     if (s === EMPTY) {
-      return `${baseClasses} empty`;
+      return `${baseClasses} app-empty`;
     }
     if (s === HUMAN) {
-      return `${baseClasses} player-wins`;
+      return `${baseClasses} app-player-wins`;
     }
     if (s === COMPUTER) {
-      return `${baseClasses} player-losses`;
+      return `${baseClasses} app-player-losses`;
     }
-    return `${baseClasses} draw`;
+    return `${baseClasses} app-draw-game`;
   }
   return (
     <div

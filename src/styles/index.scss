@@ -36,18 +36,27 @@ body {
     user-select: none;
 }
 
-.empty {
+.app-empty {
     background: white;
 }
 
-.player-wins {
+.app-player-wins {
     background: lightgreen;
 }
 
-.player-losses {
+.app-player-losses {
     background: palevioletred;
 }
 
-.draw {
+.app-draw-game {
     background: slateblue;
 }
+
+.app-ui-text {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    color: white;
+}
+
+

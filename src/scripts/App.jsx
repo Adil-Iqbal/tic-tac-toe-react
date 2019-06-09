@@ -1,40 +1,9 @@
 import React from 'react';
 import BoardComponent from './BoardComponent';
 import UIComponent from './UIComponent';
-import { HUMAN, COMPUTER, EMPTY } from './globalVars';
-
-const blunderLimit = 0.0001;
-
-function rollBoolean() {
-  return Math.random() >= 0.5;
-}
-
-function rollBlunder(max, min = 0) {
-  return Math.random() * (max - min) + min;
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function getEmptyTiles(node) {
-  const emptyTiles = [];
-  for (let i = 0; i < node.length; i += 1) {
-    if (node[i] === EMPTY) {
-      emptyTiles.push(i);
-    }
-  }
-  return emptyTiles;
-}
-
-function createChildNode(parent, index, player) {
-  const child = [];
-  for (let i = 0; i < parent.length; i += 1) {
-    child[i] = parent[i];
-  }
-  child[index] = player;
-  return child;
-}
+import {
+  HUMAN, COMPUTER, EMPTY, rollBoolean, rollBlunder, sleep, getEmptyTiles, createChildNode,
+} from './globalVars';
 
 class App extends React.Component {
   constructor() {
@@ -46,7 +15,8 @@ class App extends React.Component {
         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]],
       humansTurn: rollBoolean(),
       humanIsX: rollBoolean(),
-      blunderChance: rollBlunder(blunderLimit),
+      blunderLimit: 0.0001,
+      blunderChance: rollBlunder(this.blunderLimit),
       score: {
         wins: 0,
         losses: 0,
@@ -59,6 +29,8 @@ class App extends React.Component {
 
     this.newGame = this.newGame.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
+    this.handleResetGame = this.handleResetGame.bind(this);
+    this.handleResetScore = this.handleResetScore.bind(this);
   }
 
   componentDidMount() {
@@ -84,6 +56,7 @@ class App extends React.Component {
   }
 
   newGame() {
+    const { blunderLimit } = this.state;
     this.setState({
       board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       highlight: [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -309,6 +282,42 @@ class App extends React.Component {
     return randomTile;
   }
 
+  async handleResetGame() {
+    const { lockState, highlight } = this.state;
+    let { score } = this.state;
+    if (!lockState) {
+      score = Object.assign({}, score);
+      score.losses += 1;
+      await this.setState({
+        highlight: highlight.fill(COMPUTER),
+        score,
+        checkBoard: false,
+        lockState: true,
+      });
+      await sleep(800);
+      this.newGame();
+    }
+  }
+
+  async handleResetScore() {
+    const { lockState } = this.state;
+    let { score } = this.state;
+    if (!lockState) {
+      score = Object.assign({}, score);
+      score.draws = 0;
+      score.wins = 0;
+      score.losses = 0;
+      await this.setState({
+        highlight: [2, 2, 2, 2, 2, 2, 2, 2, 2],
+        score,
+        checkBoard: false,
+        lockState: true,
+      });
+      await sleep(800);
+      this.newGame();
+    }
+  }
+
   render() {
     const { score, blunderChance, highlight } = this.state;
     const { wins, losses, draws } = score;
@@ -323,7 +332,8 @@ class App extends React.Component {
           wins={wins}
           losses={losses}
           draws={draws}
-          blunderChance={blunderChance}
+          handleResetGame={this.handleResetGame}
+          handleResetScore={this.handleResetScore}
         />
       </div>
     );
