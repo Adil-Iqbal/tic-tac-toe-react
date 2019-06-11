@@ -2,9 +2,11 @@ import React from 'react';
 import BoardComponent from './BoardComponent';
 import UIComponent from './UIComponent';
 import {
-  HUMAN, COMPUTER, EMPTY, rollBoolean, rollBlunder, sleep, getEmptyTiles, createChildNode,
-} from './globalVars';
+  HUMAN, COMPUTER, EMPTY, rollBoolean, rollBlunder, sleep,
+  getEmptyTiles, createChildNode, pickRandomElement,
+} from './utility';
 
+/** App Comonent. Handles all business-logic of the app. */
 class App extends React.Component {
   constructor() {
     super();
@@ -15,7 +17,7 @@ class App extends React.Component {
         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]],
       humansTurn: rollBoolean(),
       humanIsX: rollBoolean(),
-      blunderLimit: 0.0001,
+      blunderLimit: 0.05,
       blunderChance: rollBlunder(this.blunderLimit),
       score: {
         wins: 0,
@@ -25,22 +27,27 @@ class App extends React.Component {
       checkBoard: false,
       maxDepth: 10,
       lockState: false,
+      computerHasMoved: false,
     };
 
     this.newGame = this.newGame.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
     this.handleResetGame = this.handleResetGame.bind(this);
-    this.handleResetScore = this.handleResetScore.bind(this);
+    this.handleResetScore = this.handleClearScore.bind(this);
   }
 
+  /** React life-cycle method. Called after component is initially mounted. */
   componentDidMount() {
     this.newGame();
     const { humansTurn } = this.state;
     if (!humansTurn) {
-      this.computersMove(true);
+      this.computersMove();
     }
   }
 
+  /**
+   * React life-cycle method. Called after a render.
+   */
   componentDidUpdate() {
     const {
       checkBoard, board, humansTurn, lockState,
@@ -55,6 +62,9 @@ class App extends React.Component {
     }
   }
 
+  /**
+   * Clears the board and resets the game.
+   */
   newGame() {
     const { blunderLimit } = this.state;
     this.setState({
@@ -65,9 +75,17 @@ class App extends React.Component {
       blunderChance: rollBlunder(blunderLimit),
       checkBoard: false,
       lockState: false,
+      computerHasMoved: false,
     });
   }
 
+  /**
+   * Checks if the current board or node meets a win condition.
+   * @param {number[]} board The current board or node to be evaluated.
+   * @param {boolean} isNode If true, returns boolean. If false, resolves game if win occurs.
+   * @param {boolean} returnPlayer If true, returns integer representation of winning player.
+   * @returns {boolean|number|null} Return type depends on setting of isNode & returnPlayer params.
+   */
   checkWin(board, isNode = false, returnPlayer = false) {
     const { winConditions } = this.state;
     for (let i = 0; i < winConditions.length; i += 1) {
@@ -94,6 +112,12 @@ class App extends React.Component {
     return null;
   }
 
+  /**
+   * Called when a win condition is met.
+   * Increments score, highlights winning move, and starts next game.
+   * @param {number} index Index of state.winCondition that was met.
+   * @param {number} winner Integer representation of winning player.
+   */
   async resolveGame(index, winner) {
     const { lockState } = this.state;
     let { score } = this.state;
@@ -115,6 +139,12 @@ class App extends React.Component {
     }
   }
 
+  /**
+   * Tells the render method which tiles to highlight in which color.
+   * @param {number} index Index of state.winCondition that was met.
+   * @param {number} player Integer representation of winning player.
+   * @returns {number[]} Number array to replace state.highlight.
+   */
   highlightBoard(index, player) {
     const { winConditions } = this.state;
     const [a, b, c] = winConditions[index];
@@ -125,6 +155,9 @@ class App extends React.Component {
     return newDisplay;
   }
 
+  /**
+   * Checks if the current board meets the draw condition.
+   */
   checkDraw() {
     const { board } = this.state;
     if (!board.includes(EMPTY)) {
@@ -132,6 +165,10 @@ class App extends React.Component {
     }
   }
 
+  /**
+   * Called when the draw condition is met.
+   * Increments score, highlights board, and starts next game.
+   */
   async drawGame() {
     const { lockState } = this.state;
     let { score } = this.state;
@@ -149,39 +186,63 @@ class App extends React.Component {
     }
   }
 
-  handleTileClick(env) {
-    const index = env.currentTarget.dataset.board_index;
+  /**
+   * Handles a tile being clicked.
+   * @param {object} obj Object containing index of tile that was clicked.
+   */
+  handleTileClick(obj) {
+    const index = obj.currentTarget.dataset.board_index;
     const { board, humansTurn } = this.state;
     if (humansTurn && board[index] === EMPTY) {
       this.claimTile(index, HUMAN);
     }
   }
 
+  /**
+   * Registers tile ownership.
+   * @param {number} index Index of state.board that was claimed.
+   * @param {number} player Integer representation of player claiming tile.
+   */
   claimTile(index, player) {
     const { board, humansTurn, lockState } = this.state;
+    let { computerHasMoved } = this.state;
     if (!lockState) {
       board[index] = player;
+      if (!computerHasMoved && player === COMPUTER) {
+        computerHasMoved = true;
+      }
       this.setState({
         board,
         humansTurn: !humansTurn,
         checkBoard: true,
+        computerHasMoved,
       });
     }
   }
 
+  /**
+   * Compares state.blunderChance to a random number.
+   * @returns {boolean} Result of comparison.
+   */
   doesBlunder() {
-    const { blunderChance } = this.state;
-    return Math.random() >= blunderChance;
+    const { blunderChance: randomA } = this.state;
+    const randomB = Math.random();
+    const compare = randomA >= randomB;
+    return compare;
   }
 
+  /**
+   * Converts state.board from number array to string Xs and Os.
+   * @returns {string} String representation of state.board.
+   */
   boardToString() {
-    const { board, humanIsX: playerIsX } = this.state;
+    const { board, humanIsX } = this.state;
     let boardString = '';
     for (let i = 0; i < board.length; i += 1) {
       if (board[i] === HUMAN) {
-        boardString += playerIsX ? 'X' : 'O';
+        boardString += humanIsX ? 'X' : 'O';
       } else if (board[i] === COMPUTER) {
-        boardString += playerIsX ? 'O' : 'X';
+        boardString += humanIsX ? 'O' : 'X';
       } else {
         boardString += ' ';
       }
@@ -189,19 +250,34 @@ class App extends React.Component {
     return boardString;
   }
 
-  isTerminalNode(depth, emptyTiles, winningPlayer) {
+  /**
+   * Checks if a node is terminal.
+   * @param {number} depth Indicates the depth of the node.
+   * @param {number[]} emptyTiles The indices of empty tiles in the node.
+   * @param {number|null} winner Integer representation of the winning player, if any.
+   */
+  isTerminalNode(depth, emptyTiles, winner) {
     const { maxDepth } = this.state;
-    if (depth > maxDepth || emptyTiles.length === 0 || typeof winningPlayer === 'number') {
-      if (emptyTiles.length === 0 && typeof winningPlayer !== 'number') {
+    if (depth > maxDepth || emptyTiles.length === 0 || typeof winner === 'number') {
+      if (emptyTiles.length === 0 && typeof winner !== 'number') {
         return 0;
       }
-      if (typeof winningPlayer === 'number') {
-        return (maxDepth - depth) * winningPlayer;
+      if (typeof winner === 'number') {
+        return (depth - maxDepth) * winner;
       }
     }
     return false;
   }
 
+  /**
+   * Determines the best move by constructing a search tree of all possible AI moves.
+   * @param {number[]} node The state of the board after possible moves are played.
+   * @param {number} depth The depth of the tree.
+   * @param {number} alpha Prunes nodes that could not possibly be maximizing.
+   * @param {number} beta Prunes nodes that could not possibly be minimizing.
+   * @param {boolean} first If true, designates the root node.
+   * @returns {number} If root node, returns index of best move. Otherwise returns heuristic value.
+   */
   minimaxA(node, depth = 0, alpha = -Infinity, beta = Infinity, first = true) {
     const emptyTiles = getEmptyTiles(node);
     const winner = this.checkWin(node, true, true);
@@ -236,6 +312,14 @@ class App extends React.Component {
     return maxValue;
   }
 
+  /**
+   * Determines the best move by constructing a search tree of all possible human moves.
+   * @param {number[]} node The state of the board after possible moves are played.
+   * @param {number} depth  The depth of the tree.
+   * @param {number} alpha Prunes nodes that could not possibly be maximizing.
+   * @param {number} beta Prunes nodes that could not possibly be minimizing.
+   * @returns {number} The heuristic value of this node.
+   */
   minimaxB(node, depth = 0, alpha = -Infinity, beta = Infinity) {
     const emptyTiles = getEmptyTiles(node);
     const winner = this.checkWin(node, true, true);
@@ -262,26 +346,53 @@ class App extends React.Component {
     return minValue;
   }
 
-  computersMove(forceBlunder = false) {
-    const { board } = this.state;
-    let index;
-    if (forceBlunder || this.doesBlunder()) {
-      console.log('Blunder!');
-      index = this.randomMove();
+  /**
+   * Determines which tile the AI will claim. If it's the first move, the AI will randomly
+   * claim either the center tile or the corners. If it's the second move, the AI will attempt
+   * to claim the center tile, otherwise it will claim one of the corners. Thereafter, if the
+   * AI blunders, it will claim a random tile. If it does not blunder, it will make the best
+   * possible move.
+   */
+  computersMove() {
+    const { computerHasMoved, board } = this.state;
+    let move;
+    if (!computerHasMoved) {
+      const humanHasMoved = board.reduce((a, b) => a || b === HUMAN, false);
+      const corners = [0, 2, 6, 8];
+      if (humanHasMoved) {
+        const humanMove = board.indexOf(HUMAN);
+        if (humanMove === 4) {
+          move = pickRandomElement(corners);
+        } else {
+          move = 4;
+        }
+      } else {
+        const cornersAndMiddle = [4].concat(corners);
+        move = pickRandomElement(cornersAndMiddle);
+      }
+    } else if (this.doesBlunder()) {
+      move = this.randomMove();
     } else {
-      index = this.minimaxA(board, 0, COMPUTER);
+      move = this.minimaxA(board, 0, COMPUTER);
     }
-    this.claimTile(index, COMPUTER);
+    this.claimTile(move, COMPUTER);
   }
 
+  /**
+   * Chooses an empty tile at random.
+   * @returns {number} Index of a random empty tile.
+   */
   randomMove() {
     const { board } = this.state;
     const emptyTiles = getEmptyTiles(board);
-    const randomIndex = Math.floor(Math.random() * emptyTiles.length);
-    const randomTile = emptyTiles[randomIndex];
-    return randomTile;
+    const randomIndex = pickRandomElement(emptyTiles);
+    return randomIndex;
   }
 
+  /**
+   * Handles the 'Reset Game' button being clicked.
+   * Increments loss counter, highlights board, and starts new game.
+   */
   async handleResetGame() {
     const { lockState, highlight } = this.state;
     let { score } = this.state;
@@ -299,7 +410,11 @@ class App extends React.Component {
     }
   }
 
-  async handleResetScore() {
+  /**
+   * Handles 'Clear Score' button being clicked.
+   * Clears score, highlights board, and starts new game.
+   */
+  async handleClearScore() {
     const { lockState } = this.state;
     let { score } = this.state;
     if (!lockState) {
@@ -318,8 +433,9 @@ class App extends React.Component {
     }
   }
 
+  /** React method. Renders UI. */
   render() {
-    const { score, blunderChance, highlight } = this.state;
+    const { score, highlight } = this.state;
     const { wins, losses, draws } = score;
     return (
       <div className="app-main container mx-auto">
@@ -333,7 +449,7 @@ class App extends React.Component {
           losses={losses}
           draws={draws}
           handleResetGame={this.handleResetGame}
-          handleResetScore={this.handleResetScore}
+          handleClearScore={this.handleClearScore}
         />
       </div>
     );

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HUMAN, COMPUTER, EMPTY } from './globalVars';
+import { HUMAN, COMPUTER, EMPTY } from './utility';
 
 function TileComponent(props) {
   const {

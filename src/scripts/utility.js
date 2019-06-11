@@ -32,3 +32,13 @@ export function createChildNode(parent, index, player) {
   child[index] = player;
   return child;
 }
+
+export function pickRandomElement(array) {
+  console.log('------ pickRandomElement');
+  const randomPickIndex = Math.floor(Math.random() * array.length);
+  const randomElement = array[randomPickIndex];
+  console.log(`param array: ${array}
+randomPickIndex: ${randomPickIndex}
+randomElement: ${randomElement}`);
+  return randomElement;
+}
