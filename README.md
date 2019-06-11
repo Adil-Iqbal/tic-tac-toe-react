@@ -51,10 +51,11 @@ Describe how to install / setup your local environment / add link to demo versio
 ## Control Flow
 When perusing the code for this project, it may be helpful to have this guide handy. It pertains in particular to the <code>.\src\scripts\App.jsx</code> file.
 
-![Control Flow](.\media\ttr-control-flow-v2.jpg)
+![Control Flow](https://i.imgur.com/LXE50Zk.jpg)
 
 ## Documentation
-* [App](.\docs\App.md)
+* [App](https://github.com/Adil-Iqbal/tic-tac-toe-react/blob/master/docs/App.md)
+* [utility](https://github.com/Adil-Iqbal/tic-tac-toe-react/blob/master/docs/utility.md)
 
 ## Contact
 Created by [Adil Iqbal](https://www.adil-iqbal.com/).
