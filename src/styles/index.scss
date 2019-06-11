@@ -53,10 +53,18 @@ body {
 }
 
 .app-ui-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 5px;
     margin: 5px;
-    text-align: center;
     color: white;
+}
+
+.app-ui-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
