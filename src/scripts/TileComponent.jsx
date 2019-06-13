@@ -8,7 +8,7 @@ function TileComponent(props) {
     boardIndex, boardStringChar, handleClick, signal,
   } = props;
   function getClasses(s) {
-    const baseClasses = 'app-tile col-sm auto-mx text-center';
+    const baseClasses = 'app-tile col-sm auto-mx';
     if (s === EMPTY) {
       return `${baseClasses} app-empty`;
     }

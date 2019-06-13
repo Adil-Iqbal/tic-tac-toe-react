@@ -1,33 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap');
 @import "~bootstrap/scss/bootstrap";
 
-$height: 360px;
+$height: 300px;
 $spaceBetweenMargins : 10px;
+$symbolSize: 60px;
+$tileHeight: ($height / 3) - (2 * $spaceBetweenMargins);
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
 
 body {
+    @extend %flex-center;
     background: black;
 }
 
 .app-main {
-    max-width: $height;
+    width: $height;
     height: $height;
 }
 
 .app-board {
+    width: $height;
     height: $height;
     padding-top: $spaceBetweenMargins / 2;
     padding-bottom: $spaceBetweenMargins / 2;
 }
 
 .app-tile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: ($height / 3) - (2 * $spaceBetweenMargins) ;
+    @extend %flex-center;
+    width: $tileHeight;
+    height: $tileHeight;
     margin: $spaceBetweenMargins / 2;
     border-radius: 5px;
-    font-size: 80px;
+    font-size: $symbolSize;
     font-family: 'Nanum Brush Script', cursive;
     cursor: pointer;
     -webkit-user-select: none;
@@ -52,19 +60,22 @@ body {
     background: slateblue;
 }
 
+.app-ui {
+    width: $height;
+}
+
 .app-ui-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    margin: 5px;
+    @extend %flex-center;
+    padding-bottom: 5px;
     color: white;
 }
 
 .app-ui-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %flex-center;
+    padding-top: 5px;
+    font-size: 9px;
 }
+
+
 
 

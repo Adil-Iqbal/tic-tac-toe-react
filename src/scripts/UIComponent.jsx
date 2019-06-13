@@ -22,7 +22,7 @@ function UIComponent(props) {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm">
+        <div className="col-sm app-ui-buttons">
           <button
             type="button"
             className="btn btn-primary"
@@ -31,7 +31,7 @@ function UIComponent(props) {
             Reset Game
           </button>
         </div>
-        <div className="col-sm">
+        <div className="col-sm app-ui-buttons">
           <button
             type="button"
             className="btn btn-primary center"
