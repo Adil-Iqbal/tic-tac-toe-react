@@ -33,7 +33,7 @@ class App extends React.Component {
     this.newGame = this.newGame.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
     this.handleResetGame = this.handleResetGame.bind(this);
-    this.handleResetScore = this.handleClearScore.bind(this);
+    this.handleClearScore = this.handleClearScore.bind(this);
   }
 
   /** React life-cycle method. Called after component is initially mounted. */
@@ -45,9 +45,7 @@ class App extends React.Component {
     }
   }
 
-  /**
-   * React life-cycle method. Called after a render.
-   */
+  /** React life-cycle method. Called after a render. */
   componentDidUpdate() {
     const {
       checkBoard, board, humansTurn, lockState,
@@ -62,9 +60,7 @@ class App extends React.Component {
     }
   }
 
-  /**
-   * Clears the board and resets the game.
-   */
+  /** Clears the board and resets the game. */
   newGame() {
     const { blunderLimit } = this.state;
     this.setState({
@@ -155,9 +151,7 @@ class App extends React.Component {
     return newDisplay;
   }
 
-  /**
-   * Checks if the current board meets the draw condition.
-   */
+  /** Checks if the current board meets the draw condition. */
   checkDraw() {
     const { board } = this.state;
     if (!board.includes(EMPTY)) {
