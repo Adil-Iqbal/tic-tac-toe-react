@@ -28,7 +28,7 @@ This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a **[M
   * ... provide a foundation for learning other React technologies (React Router, Redux, and React-Native).
 
 ## Screenshots
-![Example screenshot](https://via.placeholder.com/500.jpg?text=Place+screenshot+here.)
+![Example screenshot](https://raw.githubusercontent.com/Adil-Iqbal/tic-tac-toe-react/master/media/screenshot.jpg)
 
 ## Technologies 
 * **React** - version 16.8.6
@@ -36,18 +36,30 @@ This app is a one-player game of Tic-Tac-Toe.  The computer opponent uses a **[M
 * **Node** - version 10.15.3
 * **ESLint** - version 5.16.0
 * **Sass** - version 3.6.0
+* **Bootstrap** - version 4.3.1
 * **Babel** - version 7.4.6
 
 See the 'package.json' file in the root directory for complete and detailed information on all technologies used as well as versioning.
 
 ## Features
+* Randomized selection of 'X' and 'O' mimics how the game is played in the real world.
+* Randomized Intelligence - Computer can play the game perfectly, but has a random chance to blunder a move depending on its intelligence.
+* Initial move is randomly assigned to mimic how the game is typically played in the real world.
+* Score is tracked and can be cleared as desired.
+* Game can be reset as desired. (Reset results in a loss!)
 
 ## Status
-This project is currently **in active development** and *not ready* for publishing. This section will be updated often during the development process. Once published, a live version will be viewable on **[my portfolio page](https://www.adil-iqbal.com/)**.
+This project is currently **being actively maintained** and is *ready* for publishing. A live version can be accessed via **[my portfolio page](https://www.adil-iqbal.com/)**.
 
 ## Setup
-Describe how to install / setup your local environment / add link to demo version.
-
+You can find a live version of this project on **[my portfolio page](https://www.adil-iqbal.com/)** or you can alternatively **[click here]()** to go directly to the project.  If you'd like to install a local copy of this program, follow the steps below:
+* Open your Command Prompt / Terminal and navigate to the location you'd like to create the folder with the associated files.
+* Clone this git repository to that location by typing in the following command into your terminal:
+<code>git clone https://github.com/Adil-Iqbal/tic-tac-toe-react.git</code>
+* Once the repository is downloaded, you will need to install the node modules required to run and develop this app further. Type this command into your terminal:
+<code>npm install</code>
+* The previous command may take a while, but after all node modules are done downloading, you can now run the app easily by typing this command into your terminal:
+<code>npm start</code>
 ## Control Flow
 When perusing the code for this project, it may be helpful to have this guide handy. It pertains in particular to the <code>.\src\scripts\App.jsx</code> file.
 
