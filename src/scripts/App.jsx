@@ -1,6 +1,7 @@
 import React from 'react';
 import BoardComponent from './BoardComponent';
 import UIComponent from './UIComponent';
+import HeaderComponent from './HeaderComponent';
 import {
   HUMAN, COMPUTER, EMPTY, rollBoolean, rollBlunder, sleep,
   getEmptyTiles, createChildNode, pickRandomElement,
@@ -17,7 +18,7 @@ class App extends React.Component {
         [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]],
       humansTurn: rollBoolean(),
       humanIsX: rollBoolean(),
-      blunderLimit: 0.05,
+      blunderLimit: 0.3,
       blunderChance: rollBlunder(this.blunderLimit),
       score: {
         wins: 0,
@@ -429,10 +430,16 @@ class App extends React.Component {
 
   /** React method. Renders UI. */
   render() {
-    const { score, highlight } = this.state;
+    const {
+      score, highlight, humansTurn, blunderChance,
+    } = this.state;
     const { wins, losses, draws } = score;
     return (
       <div className="app-main container mx-auto">
+        <HeaderComponent
+          humansTurn={humansTurn}
+          blunderChance={blunderChance}
+        />
         <BoardComponent
           boardString={this.boardToString()}
           handleClick={this.handleTileClick}
