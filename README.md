@@ -66,6 +66,9 @@ When perusing the code for this project, it may be helpful to have this guide ha
 ![Control Flow](https://i.imgur.com/LXE50Zk.jpg)
 
 ## Documentation
+Most of the business logic of this web app can be found in the <code>.\src\scripts\App.jsx</code> file and the <code>.\src\scripts\utility.js</code> file.  I've provided documentation on both which you will see when perusing the code. 
+
+If you'd like, a markdown version of the documentation has been provided below:
 * [App](https://github.com/Adil-Iqbal/tic-tac-toe-react/blob/master/docs/App.md)
 * [utility](https://github.com/Adil-Iqbal/tic-tac-toe-react/blob/master/docs/utility.md)
 
